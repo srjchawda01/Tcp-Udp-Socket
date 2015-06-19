@@ -32,7 +32,7 @@ run();
 
 private static void run() {
     try {
-        dgramSocket = new DatagramSocket();		//Step 1.
+        dgramSocket = new DatagramSocket();		/
 	//Set up stream for keyboard entry...
 	BufferedReader userEntry = new BufferedReader(
                                     new InputStreamReader(System.in));
@@ -46,16 +46,16 @@ private static void run() {
 				message.getBytes(),
                         	message.length(),
                                 host,
-                                PORT);	//Step 2.
-		dgramSocket.send(outPacket);	//Step 3.
-				buffer = new byte[256];		//Step 4.
+                                PORT);	
+		dgramSocket.send(outPacket);	
+				buffer = new byte[256];		
 				inPacket = new DatagramPacket(
 				buffer, 
-                                buffer.length); 		//Step 5.
-		dgramSocket.receive(inPacket);	//Step 6.
+                                buffer.length); 		
+		dgramSocket.receive(inPacket);	
 		response = new String(inPacket.getData(),
                                     0, 
-                                    inPacket.getLength());		//Step 7.
+                                    inPacket.getLength());		
 		System.out.println("\nSERVER> " + response);
             }
 	}while (!message.equals("***CLOSE***"));
@@ -63,7 +63,7 @@ private static void run() {
         e.printStackTrace();
         } finally {
             System.out.println("\n* Closing connection... *");
-            dgramSocket.close();					//Step 8.
+            dgramSocket.close();					
         }
 }
 }
