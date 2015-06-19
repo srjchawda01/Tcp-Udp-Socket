@@ -20,7 +20,7 @@ public class UdpSocket {
     public static void main(String[] args) {
         	System.out.println("Opening port...\n");
 	try {
-            dgramSocket = new DatagramSocket(PORT);//Step 1.
+            dgramSocket = new DatagramSocket(PORT);
 	} catch(SocketException e) {
             System.out.println("Unable to attach to port!");
 	    System.exit(1);
@@ -34,16 +34,15 @@ public class UdpSocket {
             int numMessages = 0;
 
 	do {
-            buffer = new byte[256]; 		//Step 2.
-            inPacket = new DatagramPacket(buffer, buffer.length); //Step 3.
-            dgramSocket.receive(inPacket);	//Step 4.
-
-            InetAddress clientAddress = inPacket.getAddress();	//Step 5.
-            int clientPort = inPacket.getPort();		//Step 5.
+            buffer = new byte[256]; 	
+            inPacket = new DatagramPacket(buffer, buffer.length); 
+            dgramSocket.receive(inPacket);	
+            InetAddress clientAddress = inPacket.getAddress();	
+            int clientPort = inPacket.getPort();		
 
             messageIn = new String(inPacket.getData(),
                                  0,
-                                 inPacket.getLength());	//Step 6.
+                                 inPacket.getLength());	
 
             System.out.println("Message received.");
             numMessages++;
@@ -51,14 +50,14 @@ public class UdpSocket {
             outPacket = new DatagramPacket(messageOut.getBytes(),
                                          messageOut.length(),
                                          clientAddress,	
-                                         clientPort);		//Step 7.
-            dgramSocket.send(outPacket);	//Step 8.
+                                         clientPort);		
+            dgramSocket.send(outPacket);	
         }while (true);
     } catch(IOException e){
 	e.printStackTrace();
 	} finally {		//If exception thrown, close connection.
             System.out.println("\n* Closing connection... *");
-            dgramSocket.close();				//Step 9.
+            dgramSocket.close();				
 	}
     }
 }
