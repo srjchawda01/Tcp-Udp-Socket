@@ -20,7 +20,7 @@ public class TcpSocket {
     {
             System.out.println("Opening port...\n");
     try {
-        servSock = new ServerSocket(PORT);      //Step 1.
+        servSock = new ServerSocket(PORT);      
     }catch(IOException e) {
          System.out.println("Unable to attach to port!");
          System.exit(1);
@@ -31,28 +31,28 @@ public class TcpSocket {
    }
 
 private static void run(){
-    Socket link = null;                        //Step 2.
+    Socket link = null;                        
     try {
-        link = servSock.accept();               //Step 2.
+        link = servSock.accept();               
         BufferedReader in = new BufferedReader(
                                     new InputStreamReader(
-                                            link.getInputStream())); //Step 3.
-         PrintWriter out = new PrintWriter(link.getOutputStream(),true); //Step 3.
+                                            link.getInputStream())); 
+         PrintWriter out = new PrintWriter(link.getOutputStream(),true); 
          int numMessages = 0;
-         String message = in.readLine();         //Step 4.
+         String message = in.readLine();         
          while (!message.equals("***CLOSE***")) {
             System.out.println("Message received: " + message);
             numMessages++;
-            out.println("Message " + numMessages + ": " + message);     //Step 4.
+            out.println("Message " + numMessages + ": " + message);     
             message = in.readLine();
          }
-         out.println(numMessages+ " messages received.");	//Step 4.
+         out.println(numMessages+ " messages received.");	
     } catch(IOException e){
         e.printStackTrace();
     }finally {
 	try {
 	    System.out.println("\n* Closing connection... *");
-            link.close();				    //Step 5.
+            link.close();				  
 	}catch(IOException e){
             System.out.println("Unable to disconnect!");
 	    System.exit(1);
