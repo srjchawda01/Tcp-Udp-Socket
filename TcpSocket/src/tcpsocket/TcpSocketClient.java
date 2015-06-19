@@ -27,14 +27,14 @@ public static void main(String[] args) {
 }
 
 private static void run() {
-    Socket link = null;				//Step 1.
+    Socket link = null;				
     try {
-	link = new Socket(host,PORT);		//Step 1.
+	link = new Socket(host,PORT);	
 	BufferedReader in = new BufferedReader(
                                     new InputStreamReader(
-                                            link.getInputStream()));//Step 2.
+                                            link.getInputStream()));
 
-	PrintWriter out = new PrintWriter(link.getOutputStream(),true);	 //Step 2.
+	PrintWriter out = new PrintWriter(link.getOutputStream(),true);	 
 
 	//Set up stream for keyboard entry...
 	BufferedReader userEntry =new BufferedReader(
@@ -44,8 +44,8 @@ private static void run() {
 	do {
             System.out.print("Enter message: ");
             message =  userEntry.readLine();
-            out.println(message); 		//Step 3.
-            response = in.readLine();		//Step 3.
+            out.println(message); 		
+            response = in.readLine();	
             System.out.println("\nSERVER> " + response);
 	}while (!message.equals("***CLOSE***"));
     } catch(IOException e){
@@ -53,7 +53,7 @@ private static void run() {
     } finally {
         try {
             System.out.println("\n* Closing connection... *");
-            link.close();				//Step 4.
+            link.close();				
 	}catch(IOException e){
             System.out.println("Unable to disconnect!");
             System.exit(1);
